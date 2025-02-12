@@ -3,7 +3,7 @@ import React from 'react'
 function Exercise3() {
   return (
     <div>
-      <h2>Exercise3</h2>
+      <h2>SVShope 2025</h2>
     </div>
   )
 }
