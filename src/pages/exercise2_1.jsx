@@ -319,47 +319,86 @@ function shuffleIntoTwoPackets() {
 
 function Exercise2_1() {
 
-//global value
-let imgNameC=deckWithImage.find(item => item.value === 100).img;
-let imgNameU=deckWithImage.find(item => item.value === 101).img;
-
-
 
 const [pack1, pack2] = shuffleIntoTwoPackets();
-console.log("First 26 cards:", pack1);
-console.log("Second 26 cards:", pack2);
 
-const [countC,setCountC] = useState(0);
-const [countU,setCountU] = useState(0);
+const [winC,setWinC] = useState(0);
+const [winU,setWinU] = useState(0);
+const [count,setCount] = useState(0);
 
  const clickHandler = ()=>{
-  setCountC(countC+1);
-  setCountU(countU+1);
 
+  if(count<26) {
+   
+    let itemC=deckWithImage.filter((item)=>{
+      if(item.name==pack1[count]) {
+        return item
+      }
+    })
+
+    let itemU=deckWithImage.filter((item)=>{
+      if(item.name==pack2[count]) {
+        return item
+      }
+    })
+  
+   
+    if(itemC[0].value==itemU[0].value) {
+      
+     setWinC(winC+1);
+     setWinU(winU+1)
+    }
+   
+    else if(itemC[0].value>itemU.value) {
+     setWinC(winC+1);
+    }
+     
+    else {
+      setWinU(winU+1);
+    }
+   
+    setCount(count+1)
+  }
  }
 
-  // const compareAndUpdate= ()=>{
-   // C:\sv-college-exc\home-work-15\src\assets\cards\back_dark.png
 
-  // }
-
-  
-
+ let imgNameC;
+ let imgNameU;
+ 
+if(count<25) {
+   imgNameC=deckWithImage.find(item => item.name === pack1[count]).img;
+   imgNameU=deckWithImage.find(item => item.name === pack2[count]).img;
 
   return (
 
-     <div className="flex flex-col justify-items-center bg-gray-100">
-      <h1 className="text-blue-500 text-5xl">Computer:</h1>
-      <p>{pack1[countC]}</p>  
+     <div className="flex flex-col justify-items-center items-center bg-gray-100">
+      <h1 className="text-blue-500 text-5xl my-5">Computer:</h1>
       <img className="w-50" src={"../src/assets/cards/" + imgNameC} alt="imgNameC" /> 
-      <h1  className="text-blue-500 text-5xl">You</h1>
-      <p>{pack2[countU]}</p>
+      <h1  className="text-blue-500 text-5xl my-5">You</h1>
       <img className="w-50" src={"../src/assets/cards/" + imgNameU} alt="imgNameU" /> 
-      <button onClick={clickHandler} className="bg-blue-500 text-white font-medium">next</button>
+      <button onClick={clickHandler} className="bg-blue-500 text-white font-medium w-50 my-10 rounded-xl">next</button>
      </div>
- 
-   
   )
 }
+
+
+  // if count>25 End
+  else {
+
+
+    if(winC>winU) {
+      alert(`the Winner is Computer: [Computer[${winC}]],[User[${winU}]]`);
+    }
+    else if(winC<winU) {
+      alert(`the Winner is user: [Computer[${winC}]],[User[${winU}]]`);
+
+    }
+
+    else {
+      alert(`Equal result: [Computer[${winC}]],[User[${winU}]]`)
+    }
+  }
+}
+
 
 export default Exercise2_1;
