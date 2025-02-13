@@ -7,6 +7,7 @@ import Exercise1 from "./pages/exercise1.jsx";
 import Exercise2 from "./pages/exercise2.jsx";
 import Exercise2_1 from './pages/exercise2_1.jsx';
 import Exercise3 from "./pages/exercise3.jsx";
+import Exercise3_1 from './pages/exercise3_1.jsx';
 
 
 
@@ -25,6 +26,9 @@ function App() {
           <Route path="/exercise2" element={<Exercise2 />} />
           <Route path="/exercise2/exercise2_1" element={<Exercise2_1 />} />
           <Route path="/exercise3" element={<Exercise3 />} />
+          <Route path="/exercise3/exercise3_1" element={<Exercise3_1 />} />
+
+
         </Routes>
       </div>
       <footer className="bg-gray-100 p-4 text-center">
