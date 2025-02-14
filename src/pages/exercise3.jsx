@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function Exercise3() {
@@ -24,12 +24,17 @@ function Exercise3() {
    
    ]
 
-   const [cart_ar,setCart_ar]= useState([]);
-   const [cart,setCart] = useState(0);
-    const navigate=useNavigate();
+  const [cart_ar,setCart_ar]= useState([]);
+  const [cart,setCart] = useState(0);
+  const [text,setText] = useState(0);
+  const navigate=useNavigate();
+
 
    const addToCart = (id)=>{
+    setText(text+1);
     setCart(cart+1);
+
+
 
     const productToAdd = products.find((product) => product.id === id);
     if (productToAdd) {
@@ -55,7 +60,7 @@ function Exercise3() {
         <h1 className="ml-4 text-xl font-bold">SV-SHOP</h1>
       </div>
     
-      <div className="flex items-center">
+      <div className=" relative flex items-center">
      
         <img
           src={"../src/assets/images/cartIcon.webp"}
@@ -69,6 +74,7 @@ function Exercise3() {
             });
           }}
         />
+        <span  className= 'absolute top-1.5 left-4  bg-red-400 text-white rounded-full px-2'>{text}</span>
       </div>
     </div>
 
@@ -80,7 +86,7 @@ function Exercise3() {
           return (
           <div key={product.id} className="flex items-center justify-between bg-blue-600 text-white rounded-md p-4">
           <span className="font-bold">{product.name} price = {product.price}</span>
-          <button onClick={()=>addToCart(product.id)} className="bg-white text-blue-600 px-3 py-1 font-bold rounded hover:bg-gray-100">
+          <button onClick={()=>{addToCart(product.id)}} className="bg-white text-blue-600 px-3 py-1 font-bold rounded hover:bg-gray-100">
             +
           </button>
         </div>
